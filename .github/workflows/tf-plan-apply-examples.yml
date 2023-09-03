@@ -1,0 +1,22 @@
+name: Terraform Plan & Apply examples
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+env:
+  WORKDIR: examples/
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.WORKDIR }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build the stack
+        run: docker-compose up -d
