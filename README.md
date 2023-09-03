@@ -1,6 +1,16 @@
 # terraform-aws-sqs 
 
+This module builds a SQS queue. It includes:
+- an optional deadletter queue and necessary redrives
+- 3 default policy documents that can be used to create inline policies
 
+## Examples
+
+The following examples show the usage of the module:
+- [Standard Queues](./examples/standard_with_dlq/main.tf)
+- [FIFO Queues](./examples/fifo/main.tf)
+
+These examples are planned and applied against localstack as part of the CI pipeline. 
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements

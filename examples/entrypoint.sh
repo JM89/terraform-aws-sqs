@@ -18,11 +18,11 @@ echo "Successful connection to endpoint: $AWS_ENDPOINT in region $AWS_REGION"
 
 aws s3api create-bucket --bucket terraform-state --endpoint-url http://localstack:4566 --region eu-west-2 --create-bucket-configuration LocationConstraint=eu-west-2
 
-echo "Run examples: fifo-queue"
-sh ./examples/tf-plan-apply.sh "fifo"
+# echo "Run examples: fifo-queue"
+# sh ./examples/tf-plan-apply.sh "fifo"
 
-echo "Teardown: fifo"
-sh ./examples/tf-destroy.sh "fifo"
+# echo "Teardown: fifo"
+# sh ./examples/tf-destroy.sh "fifo"
 
 echo "Run examples: standard-queue"
 sh ./examples/tf-plan-apply.sh "standard_with_dlq"

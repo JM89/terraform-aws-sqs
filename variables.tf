@@ -21,7 +21,7 @@ variable "max_retry_attempts" {
 
 variable "tags" {
   description = "List of custom tags"
-  type        = map
+  type        = map(any)
   default     = {}
 }
 
