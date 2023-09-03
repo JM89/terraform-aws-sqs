@@ -11,7 +11,7 @@ output "default_receive_policy_document" {
 }
 
 output "default_send_policy_document" {
-value = module.standard.default_send_policy_document
+  value = module.standard.default_send_policy_document
 }
 
 output "default_replay_policy_document" {

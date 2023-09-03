@@ -7,5 +7,5 @@ output "default_receive_policy_document" {
 }
 
 output "default_send_policy_document" {
-value = module.fifo.default_send_policy_document
+  value = module.fifo.default_send_policy_document
 }

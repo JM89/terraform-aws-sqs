@@ -20,6 +20,6 @@ provider "aws" {
   skip_requesting_account_id  = true
 
   endpoints {
-    sqs      = "http://localstack:4566"
+    sqs = "http://localstack:4566"
   }
 }

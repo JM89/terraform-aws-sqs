@@ -11,7 +11,7 @@ output "default_receive_policy_document" {
 }
 
 output "default_send_policy_document" {
-value = data.aws_iam_policy_document.default_send_policy_document.json
+  value = data.aws_iam_policy_document.default_send_policy_document.json
 }
 
 output "default_replay_policy_document" {
