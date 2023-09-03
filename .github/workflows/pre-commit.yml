@@ -21,6 +21,7 @@ jobs:
         tar -xzf terraform-docs.tar.gz 
         chmod +x terraform-docs 
         mv terraform-docs /usr/local/bin/terraform-docs
+        rm terraform-docs.tar.gz
     - uses: actions/setup-python@v3
     - uses: pre-commit/action@v3.0.0
     - name: Commit & Push changes
