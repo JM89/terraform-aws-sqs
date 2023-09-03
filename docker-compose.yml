@@ -6,7 +6,7 @@ services:
     container_name: localstack
     build:
       dockerfile: Dockerfile
-      context: .
+      context: ./setup/localstack
     environment:
       - SERVICES=sqs
       - DEBUG=${DEBUG-}
@@ -19,3 +19,14 @@ services:
       - "4566:4566"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+
+  run-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      AWS_ACCESS_KEY_ID: XXX
+      AWS_SECRET_ACCESS_KEY: XXX
+      AWS_ENDPOINT: http://localstack:4566
+      AWS_REGION: eu-west-2
+    container_name: run-tests

@@ -1,22 +1,9 @@
-FROM localstack/localstack:1.2.0
+FROM zenika/terraform-aws-cli:release-7.0_terraform-1.3.9_awscli-2.12.5
 
-ENV TF_VERSION=1.5.6
+COPY --chown=nonroot main.tf ./
+COPY --chown=nonroot outputs.tf ./
+COPY --chown=nonroot variables.tf ./
 
-RUN apt-get update && apt-get install wget
+COPY --chown=nonroot ./examples/ ./examples/
 
-RUN wget https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip && \
-    unzip terraform_${TF_VERSION}_linux_amd64.zip && \
-    mv terraform /usr/local/bin/terraform && \
-    chmod +x /usr/local/bin/terraform && \
-    rm terraform_${TF_VERSION}_linux_amd64.zip
-
-COPY ./examples/ /etc/localstack/init/ready.d/examples/
-COPY ./examples/init-aws.sh /etc/localstack/init/ready.d/
-COPY ./examples/tf-plan-apply.sh /etc/localstack/init/ready.d/
-COPY main.tf /etc/localstack/init/ready.d/
-COPY outputs.tf /etc/localstack/init/ready.d/
-COPY variables.tf /etc/localstack/init/ready.d/
-
-RUN chmod -R 744 /etc/localstack/init/ready.d/
-
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT [ "bash", "examples/entrypoint.sh" ]
