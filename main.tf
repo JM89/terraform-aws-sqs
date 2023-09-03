@@ -6,16 +6,16 @@ resource "aws_sqs_queue" "queue" {
   visibility_timeout_seconds = var.visibility_timeout
   delay_seconds              = var.delay
   fifo_queue                 = var.enable_fifo
-  tags                       = var.tags
+  redrive_policy = var.enable_dlq ? jsonencode({
+    deadLetterTargetArn = aws_sqs_queue.deadletter_queue[0].arn
+    maxReceiveCount     = var.max_retry_attempts
+  }) : null
+  tags = var.tags
 }
 
 resource "aws_sqs_queue" "deadletter_queue" {
-  count = var.enable_dlq ? 1 : 0
-  name  = "${var.name}-dlq"
-  redrive_allow_policy = jsonencode({
-    redrivePermission = "byQueue",
-    sourceQueueArns   = [aws_sqs_queue.queue.arn]
-  })
+  count                      = var.enable_dlq ? 1 : 0
+  name                       = "${var.name}-dlq"
   kms_master_key_id          = aws_kms_key.queue_encryption_key.arn
   message_retention_seconds  = var.message_retention_dlq
   receive_wait_time_seconds  = var.long_polling_wait_time
@@ -24,18 +24,9 @@ resource "aws_sqs_queue" "deadletter_queue" {
   tags                       = var.tags
 }
 
-resource "aws_sqs_queue_redrive_policy" "queue_redrive" {
-  count     = var.enable_dlq ? 1 : 0
-  queue_url = aws_sqs_queue.queue.id
-  redrive_policy = jsonencode({
-    deadLetterTargetArn = aws_sqs_queue.deadletter_queue[0].arn
-    maxReceiveCount     = var.max_retry_attempts
-  })
-}
-
 resource "aws_kms_key" "queue_encryption_key" {
-  description             = "Encryption key for SQS ${var.name}"
-  tags                    = var.tags
+  description = "Encryption key for SQS ${var.name}"
+  tags        = var.tags
 }
 
 resource "aws_kms_alias" "queue_encryption_key" {

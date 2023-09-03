@@ -21,7 +21,7 @@ variable "max_retry_attempts" {
 
 variable "tags" {
   description = "List of custom tags"
-  type        = map
+  type        = map(any)
   default     = {}
 }
 
@@ -56,7 +56,7 @@ variable "delay" {
 }
 
 variable "enable_fifo" {
-  description = "Create a FIFO queue"
+  description = "Create a FIFO queue."
   type        = bool
   default     = false
 }
