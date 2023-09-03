@@ -1,10 +1,10 @@
 name: Terraform Plan & Apply examples
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
+#  push:
+#    branches:
+#      - main
+#  pull_request:
   workflow_dispatch:
 
 env:
