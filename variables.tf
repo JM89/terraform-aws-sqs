@@ -56,7 +56,7 @@ variable "delay" {
 }
 
 variable "enable_fifo" {
-  description = "Create a FIFO queue"
+  description = "Create a FIFO queue."
   type        = bool
   default     = false
 }
