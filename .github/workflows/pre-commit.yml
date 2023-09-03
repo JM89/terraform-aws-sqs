@@ -5,6 +5,9 @@ on:
   push:
     branches: [main]
 
+env:
+  TF_DOCS_VERSION: 0.16.0
+
 jobs:
   pre-commit:
     runs-on: ubuntu-latest
@@ -12,7 +15,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Install Terraform Docs
       run: |
-        curl -sSLo ./terraform-docs.tar.gz https://terraform-docs.io/dl/v0.16.0/terraform-docs-v0.16.0-linux-amd64.tar.gz 
+        curl -sSLo ./terraform-docs.tar.gz https://terraform-docs.io/dl/v${TF_DOCS_VERSION}/terraform-docs-v${TF_DOCS_VERSION}-linux-amd64.tar.gz 
         tar -xzf terraform-docs.tar.gz 
         chmod +x terraform-docs 
         mv terraform-docs /usr/local/bin/terraform-docs
