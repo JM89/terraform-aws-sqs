@@ -4,9 +4,7 @@ services:
 
   localstack:
     container_name: localstack
-    build:
-      dockerfile: Dockerfile
-      context: ./setup/localstack
+    image: localstack/localstack:1.2.0
     environment:
       - SERVICES=sqs
       - DEBUG=${DEBUG-}
