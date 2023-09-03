@@ -11,8 +11,8 @@ RUN wget https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_V
     rm terraform_${TF_VERSION}_linux_amd64.zip
 
 COPY ./examples/ /etc/localstack/init/ready.d/examples/
-COPY ./init-aws.sh /etc/localstack/init/ready.d/
-COPY ./tf-plan-apply.sh /etc/localstack/init/ready.d/
+COPY ./examples/init-aws.sh /etc/localstack/init/ready.d/
+COPY ./examples/tf-plan-apply.sh /etc/localstack/init/ready.d/
 COPY main.tf /etc/localstack/init/ready.d/
 COPY outputs.tf /etc/localstack/init/ready.d/
 COPY variables.tf /etc/localstack/init/ready.d/
