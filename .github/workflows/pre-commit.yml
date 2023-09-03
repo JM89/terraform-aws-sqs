@@ -22,9 +22,10 @@ jobs:
         chmod +x terraform-docs 
         mv terraform-docs /usr/local/bin/terraform-docs
         rm terraform-docs.tar.gz
+        ls -ail
     - uses: actions/setup-python@v3
     - uses: pre-commit/action@v3.0.0
-    - name: Commit & Push changes
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: Pre-commit changes
+    # - name: Commit & Push changes
+    #   uses: stefanzweifel/git-auto-commit-action@v4
+    #   with:
+    #     commit_message: Pre-commit changes
