@@ -31,19 +31,16 @@ resource "aws_sqs_queue_redrive_policy" "queue_redrive" {
     deadLetterTargetArn = aws_sqs_queue.deadletter_queue[0].arn
     maxReceiveCount     = var.max_retry_attempts
   })
-  tags = var.tags
 }
 
 resource "aws_kms_key" "queue_encryption_key" {
   description             = "Encryption key for SQS ${var.name}"
-  deletion_window_in_days = 0
   tags                    = var.tags
 }
 
 resource "aws_kms_alias" "queue_encryption_key" {
   name          = "alias/${var.name}-key"
   target_key_id = aws_kms_key.queue_encryption_key.key_id
-  tags          = var.tags
 }
 
 data "aws_iam_policy_document" "default_receive_policy_document" {

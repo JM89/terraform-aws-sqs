@@ -2,7 +2,7 @@ variable "name" {
   description = "Name of the SQS resource."
   type        = string
   validation {
-    condition     = length(var.name) > 76
+    condition     = length(var.name) <= 76
     error_message = "The variable `name` should not exceed 76 characters."
   }
 }
@@ -21,8 +21,8 @@ variable "max_retry_attempts" {
 
 variable "tags" {
   description = "List of custom tags"
-  type        = list(string)
-  default     = []
+  type        = map
+  default     = {}
 }
 
 variable "message_retention" {

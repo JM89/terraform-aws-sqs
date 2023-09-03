@@ -2,7 +2,7 @@
 
 echo "Deploying $1 locally"
 
-cd "examples/$1"
+cd "$1"
 
 echo "terraform init -reconfigure"
 terraform init -reconfigure
