@@ -1,4 +1,4 @@
 module "standard" {
   source      = ".."
-  name        = "standard-queue"
+  name        = "local-testing"
 }
