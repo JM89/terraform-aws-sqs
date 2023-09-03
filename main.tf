@@ -6,10 +6,10 @@ resource "aws_sqs_queue" "queue" {
   visibility_timeout_seconds = var.visibility_timeout
   delay_seconds              = var.delay
   fifo_queue                 = var.enable_fifo
-  redrive_policy = jsonencode({
+  redrive_policy = var.enable_dlq ? jsonencode({
     deadLetterTargetArn = aws_sqs_queue.deadletter_queue[0].arn
     maxReceiveCount     = var.max_retry_attempts
-  })
+  }) : null
   tags = var.tags
 }
 
