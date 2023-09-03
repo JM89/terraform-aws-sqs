@@ -19,4 +19,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run localstack
-        run: docker-compose up --exit-code-from localstack localstack
+        run: docker-compose up --exit-code-from localstack
