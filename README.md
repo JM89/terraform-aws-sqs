@@ -35,7 +35,6 @@ No modules.
 | [aws_kms_key.queue_encryption_key](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key) | resource |
 | [aws_sqs_queue.deadletter_queue](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue) | resource |
 | [aws_sqs_queue.queue](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue) | resource |
-| [aws_sqs_queue_redrive_policy.queue_redrive](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue_redrive_policy) | resource |
 | [aws_iam_policy_document.default_receive_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.default_replay_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.default_send_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
@@ -52,7 +51,7 @@ No modules.
 | <a name="input_message_retention"></a> [message\_retention](#input\_message\_retention) | Message Retention in seconds. | `number` | `86400` | no |
 | <a name="input_message_retention_dlq"></a> [message\_retention\_dlq](#input\_message\_retention\_dlq) | Message Retention in seconds in DLQ. Used only if `enable_dlq` is `true`. | `number` | `86400` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the SQS resource. | `string` | n/a | yes |
-| <a name="input_tags"></a> [tags](#input\_tags) | List of custom tags | `map` | `{}` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | List of custom tags | `map(any)` | `{}` | no |
 | <a name="input_visibility_timeout"></a> [visibility\_timeout](#input\_visibility\_timeout) | Visibility timeout in seconds. | `number` | `30` | no |
 
 ## Outputs
