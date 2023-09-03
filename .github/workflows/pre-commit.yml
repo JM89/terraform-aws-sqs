@@ -16,17 +16,24 @@ jobs:
       with:
         fetch-depth: 0
         token: ${{ secrets.PAT_TF_MODULES }}
-    - name: Install Terraform Docs
-      run: |
-        curl -sSLo ./terraform-docs.tar.gz https://terraform-docs.io/dl/v${TF_DOCS_VERSION}/terraform-docs-v${TF_DOCS_VERSION}-linux-amd64.tar.gz 
-        tar -xzf terraform-docs.tar.gz 
-        chmod +x terraform-docs 
-        mv terraform-docs /usr/local/bin/terraform-docs
-        rm terraform-docs.tar.gz
-        ls -ail
-    - uses: actions/setup-python@v3
-    - uses: pre-commit/action@v3.0.0
-    - name: Commit & Push changes
-      uses: stefanzweifel/git-auto-commit-action@v4
+    - name: Render terraform docs and push changes back to PR
+      uses: terraform-docs/gh-actions@main
       with:
-        commit_message: Pre-commit changes
+        working-dir: .
+        output-file: README.md
+        output-method: inject
+        git-push: "true"
+    # - name: Install Terraform Docs
+    #   run: |
+    #     curl -sSLo ./terraform-docs.tar.gz https://terraform-docs.io/dl/v${TF_DOCS_VERSION}/terraform-docs-v${TF_DOCS_VERSION}-linux-amd64.tar.gz 
+    #     tar -xzf terraform-docs.tar.gz 
+    #     chmod +x terraform-docs 
+    #     mv terraform-docs /usr/local/bin/terraform-docs
+    #     rm terraform-docs.tar.gz
+    #     ls -ail
+    # - uses: actions/setup-python@v3
+    # - uses: pre-commit/action@v3.0.0
+    # - name: Commit & Push changes
+    #   uses: stefanzweifel/git-auto-commit-action@v4
+    #   with:
+    #     commit_message: Pre-commit changes
