@@ -18,5 +18,5 @@ jobs:
         working-directory: ${{ env.WORKDIR }}
     steps:
       - uses: actions/checkout@v3
-      - name: Run localstack
+      - name: Run examples with teardown
         run: docker-compose up --exit-code-from run-tests

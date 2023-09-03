@@ -21,5 +21,11 @@ aws s3api create-bucket --bucket terraform-state --endpoint-url http://localstac
 echo "Run examples: fifo-queue"
 sh ./examples/tf-plan-apply.sh "fifo"
 
+echo "Teardown: fifo"
+sh ./examples/tf-destroy.sh "fifo"
+
 echo "Run examples: standard-queue"
 sh ./examples/tf-plan-apply.sh "standard_with_dlq"
+
+echo "Teardown: standard-queue"
+sh ./examples/tf-destroy.sh "standard_with_dlq"

@@ -21,5 +21,6 @@ provider "aws" {
 
   endpoints {
     sqs = "http://localstack:4566"
+    kms = "http://localstack:4566"
   }
 }
