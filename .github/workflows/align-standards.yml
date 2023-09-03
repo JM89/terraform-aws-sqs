@@ -7,7 +7,7 @@ env:
   TF_DOCS_VERSION: 0.16.0
 
 jobs:
-  pre-commit:
+  do:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
