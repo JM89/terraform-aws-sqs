@@ -3,3 +3,5 @@ repos:
   rev: v1.83.0
   hooks:
     - id: terraform_docs
+      args:
+      - --args=--config=.terraform-docs.yml
