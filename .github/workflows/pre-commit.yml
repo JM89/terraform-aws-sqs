@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.PAT_TF_MODULES }}
     - name: Install Terraform Docs
       run: |
         curl -sSLo ./terraform-docs.tar.gz https://terraform-docs.io/dl/v${TF_DOCS_VERSION}/terraform-docs-v${TF_DOCS_VERSION}-linux-amd64.tar.gz 
@@ -22,6 +24,6 @@ jobs:
     - uses: actions/setup-python@v3
     - uses: pre-commit/action@v3.0.0
     - name: Commit & Push changes
-      uses: actions-js/push@master
+      uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        github_token: ${{ secrets.PAT_TF_MODULES }}
+        commit_message: Pre-commit changes
